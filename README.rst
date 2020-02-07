@@ -48,3 +48,6 @@ And set your desired keybindings for each widget in `~/.xonshrc` file or set it 
 You can find the names of various keys here_ in ``python-prompt-toolkit``.
 
 .. _here: https://github.com/jonathanslenders/python-prompt-toolkit/blob/master/prompt_toolkit/keys.py
+
+History size can be limited by setting the `$fzf_history_size` variable.
+

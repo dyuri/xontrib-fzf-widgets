@@ -32,7 +32,10 @@ def fzf_insert_history(event):
     if len(event.current_buffer.text) > 0:
         popen_args.append(f'-q ^{event.current_buffer.text}')
     proc = subprocess.Popen(popen_args, stdin=subprocess.PIPE, stdout=subprocess.PIPE, universal_newlines=True)
-    history_main(args=['show', '-0', 'all'], stdout=proc.stdin)
+    history_args = ['show', '-0', 'all']
+    if 'fzf_history_size' in ${...}:
+        history_args.append('-' + str($fzf_history_size) + ':')
+    history_main(args=history_args, stdout=proc.stdin)
     proc.stdin.close()
     proc.wait()
     choice = proc.stdout.read().strip()
