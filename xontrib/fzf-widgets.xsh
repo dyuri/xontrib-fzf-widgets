@@ -3,7 +3,6 @@ import re
 import subprocess
 from xonsh.history.main import history_main
 from xonsh.completers.path import complete_path
-from xonsh.platform import ptk_shell_type
 from prompt_toolkit.keys import Keys
 
 __all__ = ['Keys']
@@ -99,10 +98,7 @@ def custom_keybindings(bindings, **kw):
         def do_nothing(func):
             pass
 
-        if ptk_shell_type() == 'prompt_toolkit2':
-            binder = bindings.add
-        else:
-            binder = bindings.registry.add_binding
+        binder = bindings.add
 
         key = ${...}.get(key_name)
         if key:
